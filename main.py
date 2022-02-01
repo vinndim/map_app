@@ -24,6 +24,16 @@ class MapApp:
     def draw(self, surf):
         surf.blit(pg.image.load(self.map), (0, 0))
 
+    def page_up(self):
+        if self.z <= 20:
+            self.z += 1
+        pass
+
+    def page_down(self):
+        if self.z > 0:
+            self.z -= 1
+        pass
+
 
 def main():
     address = 'миасс ддт юность'
@@ -37,6 +47,11 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
+            elif event.type == pg.KEYDOWN:
+                if event.key == pg.K_PAGEUP:
+                    app.page_up()
+                elif event.key == pg.K_PAGEDOWN:
+                    app.page_down()
         app.update_map()
         app.draw(screen)
         pg.display.update()
