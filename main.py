@@ -9,19 +9,20 @@ SIZE = (600, 450)
 class MapApp:
     def __init__(self, coord, z=10):
         self.coord = coord
-        self.z = z
+        self.z = 18
         self.map = None
+        self.update_map()
 
     def update_map(self):
         params = dict(
-            ll=', '.join(map(str, self.coord)),
+            ll=','.join(map(str, self.coord)),
             z=self.z,
             l='map'
         )
         self.map = io.BytesIO(get_static(**params))
 
     def draw(self, surf):
-        surf.blit(self.map, (0, 0))
+        surf.blit(pg.image.load(self.map), (0, 0))
 
 
 def main():
@@ -36,3 +37,9 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
+        app.update_map()
+        app.draw(screen)
+        pg.display.update()
+
+
+main()
