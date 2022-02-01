@@ -52,6 +52,22 @@ def main():
                     app.page_up()
                 elif event.key == pg.K_PAGEDOWN:
                     app.page_down()
+                elif event.key == pg.K_UP:
+                    if coord[1] < 85:
+                        coord[1] += 0.5
+                    print(coord)
+                elif event.key == pg.K_DOWN:
+                    if coord[1] > -85:
+                        coord[1] -= 0.5
+                    print(coord)
+                elif event.key == pg.K_RIGHT:
+                    if coord[0] < 175:
+                        coord[0] += 0.5
+                    print(coord)
+                elif event.key == pg.K_LEFT:
+                    if coord[0] > -175:
+                        coord[0] -= 0.5
+                    print(coord)
         app.update_map()
         app.draw(screen)
         pg.display.update()
